@@ -1,3 +1,4 @@
+const materialRoutes = require("./routes/crud")
 const express = require("express");
 const bodyParser = require('body-parser');
 const app = express();
@@ -6,6 +7,12 @@ const { default: mongoose } = require("mongoose");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 require('dotenv').config();
+
+app.use('/api',materialRoutes);
+app.use(express.json());
+
+
+
 app.get('/', function(req, res) {
     respuesta = {
      error: true,
@@ -17,6 +24,7 @@ app.get('/', function(req, res) {
 console.log(process.env.MONGODB_URI)
 mongoose.connect(process.env.MONGODB_URI).then(()=> console.log("login")).catch((error)=> console.error(error))
 
+
 let respuesta = {
     error: false,
     codigo: 200,
@@ -24,12 +32,6 @@ let respuesta = {
    };
 
 
-'use srict';
-const http=require('http');
-
-const server=http.createServer(function(req, res){
-    res.writeHead(200, {'content-type': 'text/plain' });
-    res.end('hola mundo');
-})
-server.listen(5000);
-
+   app.listen(5000, () => {
+    console.log("El servidor está inicializado en el puerto 5000");
+   });

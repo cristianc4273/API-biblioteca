@@ -1,10 +1,10 @@
 const express = require("express");
-const animalSchema = require("../models/animal");
+const materialSchema = require("../models/material");
 
 const router = express.Router();
 
 router.post("/crud", (req, res) => {
-    const materialSchema = materialSchema(req.body);
+    const material = materialSchema(req.body);
     material
         .save()
         .then((data) => res.json(data))

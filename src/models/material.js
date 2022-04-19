@@ -1,16 +1,12 @@
 const mongoose = require("mongoose");
 
 const materialSchema = mongoose.Schema({ // mogose hace la coneccion 
-    _id: {
-        type: Number,
-        required: true
-    },
     name: {
         type: String,
         required: true
     },
     tipo: {
-        type: Number,
+        type: String,
         required: true
     },
     cantidad: {
